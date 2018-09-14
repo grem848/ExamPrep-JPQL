@@ -54,10 +54,16 @@ public class Main
         System.out.println("Find (using JPQL) the teacher who teaches the most semesters: ");
         
         System.out.println("---");
+//        use to create studentInfo first time, how to stop it from adding same things?
+
+//        System.out.println("Create StudentInfo: \n" + facade.createStudentInfo());
+//        System.out.println("\n");
         
         System.out.println("Return a list of all Students, encapsulated as StudentInfo’s: \n" + facade.getStudentInfo());
         
         System.out.println("---");
+        
+        System.out.println("Create a method, which returns a single StudentInfo, given a students id as sketched below: \n" + facade.getStudentInfo(1));
         
         System.out.println("---");
         

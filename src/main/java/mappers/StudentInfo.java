@@ -23,6 +23,7 @@ public class StudentInfo implements Serializable
     public String classNameThisSemester;
     public String classDescription;
 
+
     public StudentInfo()
     {
     }
@@ -34,6 +35,7 @@ public class StudentInfo implements Serializable
         this.classNameThisSemester = classNameThisSemester;
         this.classDescription = classDescription;
     }
+
     
     public String getFullName()
     {
@@ -88,7 +90,7 @@ public class StudentInfo implements Serializable
     @Override
     public String toString()
     {
-        return "StudentInfo id: " + id + ", Student Name: " + fullName + ", Class Name: " + classNameThisSemester + ", Class Description: " +classDescription;
+        return "StudentInfo id: " + id + ", Student Name: " + fullName + ", Class Name: " + classNameThisSemester + ", Class Description: " +classDescription + "\n";
     }
 
 }

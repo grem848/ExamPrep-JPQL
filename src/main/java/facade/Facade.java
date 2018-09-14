@@ -121,24 +121,23 @@ public class Facade
         return result;
 
     }
-    
 
-    public List<StudentInfo> getStudentInfo()
+    public List<StudentInfo> createStudentInfo()
     {
         EntityManager em = getEntityManager();
 
         List<Student> list = getAllStudents();
-        System.out.println(list);
-        List<StudentInfo> studentInfoList = new ArrayList<>();
+        List<StudentInfo> studentInfoList = getStudentInfo();
         try
         {
             for (Student student : list)
             {
+
                 StudentInfo si = new StudentInfo(student.getFirstname() + " " + student.getLastname(), student.getId(),
                         student.getSemester().getName(), student.getSemester().getDescription());
-                studentInfoList.add(si);
 
                 em.getTransaction().begin();
+                studentInfoList.add(si);
                 em.persist(si);
                 em.getTransaction().commit();
 
@@ -149,6 +148,27 @@ public class Facade
         }
         return studentInfoList;
 
+    }
+
+    public List<StudentInfo> getStudentInfo()
+    {
+        EntityManager em = getEntityManager();
+
+        Query q = em.createQuery("select c from StudentInfo c");
+
+        List<StudentInfo> studentInfoList = q.getResultList();
+        return studentInfoList;
+
+    }
+
+    public StudentInfo getStudentInfo(long id)
+    {
+        EntityManager em = getEntityManager();
+        
+        Query q = em.createQuery("select c from StudentInfo c where c.id=:id");
+        q.setParameter("id", id);
+        StudentInfo si = (StudentInfo) q.getSingleResult();
+        return si;
     }
 
 }
