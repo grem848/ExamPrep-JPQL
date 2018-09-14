@@ -8,6 +8,7 @@ package main;
 import entity.Student;
 import facade.Facade;
 import javax.persistence.Persistence;
+import mappers.StudentInfo;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Main
     public static void main(String[] args)
     {
         Facade facade = new Facade(Persistence.createEntityManagerFactory("pu"));
-
+        
         System.out.println("Find all Students in the system: \n" + facade.getAllStudents());
         
         System.out.println("---");
@@ -54,9 +55,9 @@ public class Main
         
         System.out.println("---");
         
+        System.out.println("Return a list of all Students, encapsulated as StudentInfo’s: \n" + facade.getStudentInfo());
         
         System.out.println("---");
-        
         
         System.out.println("---");
         

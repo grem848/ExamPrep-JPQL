@@ -2,12 +2,13 @@ package facade;
 
 import entity.Semester;
 import entity.Student;
-import static entity.Student_.id;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import mappers.StudentInfo;
 
 public class Facade
 {
@@ -98,7 +99,7 @@ public class Facade
         return studentList;
 
     }
-    
+
     public long getAllStudentsFromSemester(String semname)
     {
         EntityManager em = getEntityManager();
@@ -109,7 +110,7 @@ public class Facade
         return result;
 
     }
-    
+
     public long getAllStudentsFromAllSemesters()
     {
         EntityManager em = getEntityManager();
@@ -121,10 +122,33 @@ public class Facade
 
     }
     
-    
-    
-    
-    
-    
-    
+
+    public List<StudentInfo> getStudentInfo()
+    {
+        EntityManager em = getEntityManager();
+
+        List<Student> list = getAllStudents();
+        System.out.println(list);
+        List<StudentInfo> studentInfoList = new ArrayList<>();
+        try
+        {
+            for (Student student : list)
+            {
+                StudentInfo si = new StudentInfo(student.getFirstname() + " " + student.getLastname(), student.getId(),
+                        student.getSemester().getName(), student.getSemester().getDescription());
+                studentInfoList.add(si);
+
+                em.getTransaction().begin();
+                em.persist(si);
+                em.getTransaction().commit();
+
+            }
+        } finally
+        {
+            em.close();
+        }
+        return studentInfoList;
+
+    }
+
 }
