@@ -52,6 +52,19 @@ public class Student implements Serializable
     {
     }
 
+    public Student(String firstname, String lastname, Semester semester)
+    {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.semester = semester;
+    }
+
+    public Student(String firstname, String lastname)
+    {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public Student(Long id)
     {
         this.id = id;
@@ -124,7 +137,7 @@ public class Student implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Student[ id=" + id + " ]";
+        return "Student id: " + id + ", Name: " + firstname + " " + lastname + "\n";
     }
     
 }

@@ -60,6 +60,13 @@ public class Teacher implements Serializable
     {
     }
 
+    public Teacher(String firstname, String lastname, Collection<Semester> semesterCollection)
+    {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.semesterCollection = semesterCollection;
+    }
+
     public Teacher(Long id)
     {
         this.id = id;

@@ -54,6 +54,14 @@ public class Semester implements Serializable
     {
     }
 
+    public Semester(String description, String name, Collection<Teacher> teacherCollection, Collection<Student> studentCollection)
+    {
+        this.description = description;
+        this.name = name;
+        this.teacherCollection = teacherCollection;
+        this.studentCollection = studentCollection;
+    }
+
     public Semester(Long id)
     {
         this.id = id;
